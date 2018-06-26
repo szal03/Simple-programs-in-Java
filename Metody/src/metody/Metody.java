@@ -18,6 +18,9 @@ public class Metody
         double wynik2 = a.dzielenie(10.0, 2.0);
         System.out.println(wynik2);
         
+        double wynik3=a.suma(4.89, 7.89);
+        System.out.println(wynik3);
+        
     }
     
 }
@@ -30,6 +33,11 @@ class Test
     }
     
     int suma(int liczba1, int liczba2)
+    {
+        return liczba1+liczba2;
+    }
+    //przeciazenie funkcji
+     double suma(double liczba1, double liczba2)
     {
         return liczba1+liczba2;
     }
