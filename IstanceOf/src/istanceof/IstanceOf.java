@@ -10,6 +10,7 @@ public class IstanceOf {
         Osoba[] osoba = new Osoba[4];
         osoba[0] = new Pracownik("Janek","Kowalski",900);
         osoba[1] = new Student("Szary","Student");
+        osoba[2] = new Pracownik("hakuna","matatha",800);
         
 //        osoba[0].pobierzOpis();
 //        osoba[1].pobierzOpis();
@@ -24,12 +25,18 @@ public class IstanceOf {
         //ulepszony for
         for(Osoba person: osoba)
         {
-            if(person instanceof Osoba)
+            if(person instanceof Pracownik)
             {
-                person.pobierzOpis();
+              //  ((Pracownik)person).pobierzOpis(); // nawiasy - rzutowanie w dol
+                Pracownik tmp = (Pracownik)person;
+                tmp.pracuj();
             }
-            else
-                break;
+            else if(person instanceof Student)
+            {
+                Student tmp = (Student)person;
+                tmp.pobierzOpis();
+            }
+           
         }
     }
     
@@ -63,6 +70,11 @@ class Pracownik extends Osoba
         System.out.println("Moje imie to: "+ imie);
         System.out.println("Moje nazwisko to: "+ nazwisko);
         System.out.println("Moje wynagrodzenie wyniosi: "+ wynagrodzenie);
+    }
+    
+    void pracuj()
+    {
+        System.out.println("pracuje");
     }
     
 }
