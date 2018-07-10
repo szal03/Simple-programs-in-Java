@@ -1,0 +1,4 @@
+klasyanonimowe.ZachowaniePoWcisnieciu
+klasyanonimowe.Przycisk2
+klasyanonimowe.KlasyAnonimowe
+klasyanonimowe.Przycisk
