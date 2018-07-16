@@ -13,6 +13,7 @@ package dokumentowanie;
  * opis
  * @author Alice S
  * @version 1.0.4.2 16.07.2018
+ * @see dokumentowanie.Pracownik#getWynagrodzenie() 
  */
 public class Pracownik {
     
@@ -43,13 +44,26 @@ public class Pracownik {
         this.wynagrodzenie = wynagrodzenie;
     }
     /**
-     * 
-     * 
-     * @param nowaPensja 
+     * <pre>
+     * Jak używać:
+     * Pracownik p= new Pracownik();
+     * p.setWynagrodzenie(1000);
+     * </pre>
+     * @param nowaPensja - ustawia pracownikowi nową pensję ( nowe wynagrodzenie)
      */
     public void setWynagrodzenie(double nowaPensja)
     {
-    
+        this.wynagrodzenie = nowaPensja;
+    }
+    /**
+     * 
+     * 
+     * @return zwraca pensje typu double w zł 
+     * @since ver. 1.0.0.0
+     */
+    public double getWynagrodzenie()
+    {
+        return this.wynagrodzenie;
     }
     /**
     Imię pracownika
