@@ -10,23 +10,41 @@ public class Ukladgraficzny extends JFrame
     public Ukladgraficzny()
     {
         super("Układ graficzny(Layout)");
-        this.setBounds(300, 320, 300, 200);
         
+        this.setBounds(300, 300, 500, 300);
         initComponents();
-        
+        this.pack();
         this.setDefaultCloseOperation(3);
     }
     
     public void initComponents()
     {
-        przycisk1 = new JButton("Hej!");
+        centrum = new JButton("centrum");
+        
+        gora = new JButton("jestem na gorze");
+        
+        dol = new JButton("jesteem na dole");
+        
+        prawo = new JButton("jestem po prawej");
+        
+        lewo = new JButton("jestem po lewej");
         
         Container kontener = this.getContentPane();
         
-        kontener.add(przycisk1);
+        kontener.add(centrum, BorderLayout.CENTER);
+        kontener.add(gora,BorderLayout.PAGE_START);
+        kontener.add(dol, BorderLayout.PAGE_END);
+        kontener.add(prawo, BorderLayout.EAST);
+        kontener.add(lewo,BorderLayout.WEST);
+        
     }
     
-    JButton przycisk1;
+    JButton centrum;
+    JButton gora;
+    JButton dol;
+    JButton prawo;
+    JButton lewo;
+            
     
     public static void main(String[] args) 
     {
