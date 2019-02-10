@@ -51,6 +51,27 @@ public class listy extends JFrame{
             }
         });
         panelKomunikatu.add(komunikat);
+
+        final DefaultListModel modelListy = new DefaultListModel();
+        modelListy.addElement("a");
+        modelListy.addElement("b");
+        modelListy.addElement("c");
+
+        String[] tekst = new String[]{"matematyka","fizyka","informatyka","biologia","chemia","wf","wos","po","historia"};
+
+
+
+        JList lista2 = new JList(modelListy);
+        lista2.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                for(int i=0;i<tekst.length;i++)
+                {
+                    modelListy.addElement(tekst[i]);
+                }
+            }
+        });
+        this.getContentPane().add(lista2,BorderLayout.SOUTH);
         this.getContentPane().add(panelListy, BorderLayout.NORTH);
         this.getContentPane().add(panelKomunikatu, BorderLayout.CENTER);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,6 +82,7 @@ public class listy extends JFrame{
     private JPanel panelListy = new JPanel();
     private JPanel panelKomunikatu = new JPanel();
     private JLabel komunikat = new JLabel();
+
     public static void main(String[] args)
     {
         new listy().setVisible(true);
