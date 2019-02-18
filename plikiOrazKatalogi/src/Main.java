@@ -50,9 +50,13 @@ public class Main {
         for(int i=0;i<nazwyPlikowIKatalogow.length;i++)
         {
             File p = new File(nazwaSciezki.getPath(),nazwyPlikowIKatalogow[i]);
-            System.out.println(p.getPath());
+           // if(p.isFile()) //aby znalezc tylko pliki
+          //  {
+              //  System.out.println(p.getPath());
+          //  }
             if(p.isDirectory())
             {
+                System.out.println(p.getPath());
                 wypiszWszystkieSciezki(new File(p.getPath()));
             }
         }
