@@ -6,11 +6,17 @@ public class Main {
         OutputStream outS;
 
         Reader reader;
-        Writer writer = new FileWriter("nazwa_pliku.txt");
+        File plik = new File("nazwa_pliku.txt");
+       // Writer writer = new BufferedWriter(new FileWriter(plik));
+        Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(plik)));
 
-        writer.write("lala");
 
-        writer.close();
+        ((BufferedWriter)writer).write("lala");
+
+        ((BufferedWriter)writer).newLine();
+        ((BufferedWriter)writer).write("następna linia");
+
+        ((BufferedWriter)writer).close();
     }
     void nazwaF(InputStream inS)
     {
