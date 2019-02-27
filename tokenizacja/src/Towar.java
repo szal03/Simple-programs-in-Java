@@ -1,7 +1,10 @@
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.StringTokenizer;
 
 public class Towar {
 
@@ -52,15 +55,40 @@ public class Towar {
     {
         GregorianCalendar kalendarz = new GregorianCalendar();
         kalendarz.setTime(this.dataWydania);
-        return this.cena+" zł; nazwa: "+ this.nazwa+" "+kalendarz.get(Calendar.YEAR)+" rok "+kalendarz.get(Calendar.MONTH)+" miesiąc "+kalendarz.get(Calendar.DAY_OF_MONTH)+" dzień ";
+        return this.cena+" zł; nazwa: "+ this.nazwa+" "+kalendarz.get(Calendar.YEAR)+" rok "+((kalendarz.get(Calendar.MONTH)+1)+" miesiąc "+kalendarz.get(Calendar.DAY_OF_MONTH)+" dzień ");
     }
 
-    public static void zapiszDOPliku(Towar[] towar, PrintWriter outS)
+    public static void zapiszDoPliku(Towar[] towar, PrintWriter outS)
     {
-        
-    }
+        outS.println(towar.length);
+        GregorianCalendar kalendarz = new GregorianCalendar();
+        for(int i=0;i<towar.length;i++)
+        {
+            kalendarz.setTime(towar[i].pobierzDate());
+            outS.println(towar[i].pobierzCene()+" | "+towar[i].pobierzNazwe()+" | " +kalendarz.get(Calendar.YEAR)+" | "+(kalendarz.get(Calendar.MONTH)+1)+" | "+kalendarz.get(Calendar.DAY_OF_MONTH)+" | ");
+        }
 
-    double cena;
-    String nazwa;
-    Date dataWydania;
+    }
+    public static Towar[] odczytajZPliku(BufferedReader inS) throws IOException
+    {
+        int dl = Integer.parseInt(inS.readLine());
+        Towar[] towar = new Towar[dl];
+        for(int i=0;i<dl;i++)
+        {
+            String linia = inS.readLine();
+            StringTokenizer tokeny = new StringTokenizer(linia, "|");
+            double cena = Double.parseDouble(tokeny.nextToken());
+            String nazwa = tokeny.nextToken();
+            int rok = Integer.parseInt(tokeny.nextToken());
+            int miesiac = Integer.parseInt(tokeny.nextToken());
+            int dzien = Integer.parseInt(tokeny.nextToken());
+
+            towar[i] = new Towar(cena,nazwa,rok,miesiac,dzien);
+        }
+        return towar;
+
+    }
+   private double cena;
+   private String nazwa;
+   private Date dataWydania;
 }

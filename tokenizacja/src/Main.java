@@ -11,10 +11,21 @@ public class Main {
         towar[2]=new Towar(39,"C#",2008,2,11);
         try{
             PrintWriter writer = new PrintWriter(new FileWriter("baza.txt"));
-
+            Towar.zapiszDoPliku(towar, writer);
 
 
             writer.close();
+
+            BufferedReader reader = new BufferedReader(new FileReader("baza.txt"));
+
+            Towar[] towar2 = Towar.odczytajZPliku(reader);
+
+            for(int i=0;i<towar2.length; i++)
+            {
+                System.out.println(towar2[i]);
+            }
+
+            reader.close();
         }
         catch (IOException e)
         {
