@@ -88,7 +88,8 @@ public class Towar {
         return towar;
 
     }
-   private double cena;
-   private String nazwa;
-   private Date dataWydania;
+    public static final int  dlugoscNazwy = 30;
+   private double cena; // 8 bajtow
+   private String nazwa; // dlugoscNazwy * 2 bajtow
+   private Date dataWydania; // 4 bajty * 3 = 12 bajtow RAZEM 80 bajtow
 }

@@ -1,3 +1,5 @@
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.io.*;
 
 public class Main {
@@ -10,22 +12,32 @@ public class Main {
         towar[1] = new Towar(29, "Java");
         towar[2]=new Towar(39,"C#",2008,2,11);
         try{
-            PrintWriter writer = new PrintWriter(new FileWriter("baza.txt"));
-            Towar.zapiszDoPliku(towar, writer);
+            /*
+            DataOutputStream outS = new DataOutputStream(new FileOutputStream("nowy.txt"));
 
 
-            writer.close();
+            outS.writeDouble(1234.234);
+            outS.close();
 
-            BufferedReader reader = new BufferedReader(new FileReader("baza.txt"));
+            DataInputStream inS = new DataInputStream(new FileInputStream("nowy.txt"));
+            System.out.println(inS.readDouble());
+            inS.close(); */
 
-            Towar[] towar2 = Towar.odczytajZPliku(reader);
+            RandomAccessFile RAF = new RandomAccessFile("nowy.txt", "rw"); // swobodny dostęp do pliku
 
-            for(int i=0;i<towar2.length; i++)
-            {
-                System.out.println(towar2[i]);
-            }
+            RAF.writeDouble(123.42);
+            RAF.writeDouble(41.23);
+            RAF.writeChars("cos ");
 
-            reader.close();
+            System.out.println(RAF.getFilePointer());
+
+            RAF.seek(16);
+
+            System.out.println(RAF.readChar());
+
+            RAF.close();
+
+
         }
         catch (IOException e)
         {
