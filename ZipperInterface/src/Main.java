@@ -64,6 +64,11 @@ public class Main extends JFrame {
         {
             return lista.get(index);
         }
+        public Object remove(int index)
+        {
+            lista.remove(index);
+            return super.remove(index);
+        }
         ArrayList lista = new ArrayList();
     };
     private JList lista = new JList(modelListy);
@@ -104,7 +109,8 @@ public class Main extends JFrame {
               // System.out.println("Dodawanie");
                dodajWpisyDOArchwium();
            else if(e.getActionCommand().equals("Usuń"))
-               System.out.println(("Usuwanie"));
+               //System.out.println(("Usuwanie"));
+               usunWpisZArchiwum();
            else if(e.getActionCommand().equals("Zip"))
                System.out.println("Zippowanie");
         }
@@ -140,5 +146,14 @@ public class Main extends JFrame {
         }
 
         return false;
+    }
+    private void  usunWpisZArchiwum()
+    {
+        int[] tmp = lista.getSelectedIndices();
+        for(int i=0; i<tmp.length; i++)
+        {
+            //System.out.println(tmp[i]); sprawdzenie czy dobre elementy z listy zaznacza
+            modelListy.remove(tmp[i]);
+        }
     }
 }
