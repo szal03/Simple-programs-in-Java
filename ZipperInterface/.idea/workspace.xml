@@ -14,12 +14,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="68" column="32" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+            <state relative-caret-position="381">
+              <caret line="187" column="30" lean-forward="true" selection-start-line="187" selection-start-column="30" selection-end-line="187" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2378#2379#0" expanded="true" />
-                <element signature="e#2407#2408#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,6 +50,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -137,12 +136,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552557226286" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552564310178" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../archiwizacja_danych/src/Main.java" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -187,7 +186,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07114094" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07181208" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -235,14 +234,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../archiwizacja_danych/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="34" column="9" selection-start-line="11" selection-end-line="34" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="68" column="32" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+        <state relative-caret-position="381">
+          <caret line="187" column="30" lean-forward="true" selection-start-line="187" selection-start-column="30" selection-end-line="187" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2378#2379#0" expanded="true" />
-            <element signature="e#2407#2408#0" expanded="true" />
           </folding>
         </state>
       </provider>

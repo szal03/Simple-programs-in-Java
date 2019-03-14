@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class Main extends JFrame {
 
@@ -112,7 +114,8 @@ public class Main extends JFrame {
                //System.out.println(("Usuwanie"));
                usunWpisZArchiwum();
            else if(e.getActionCommand().equals("Zip"))
-               System.out.println("Zippowanie");
+               //System.out.println("Zippowanie");
+               stworzArchiwumZip();
         }
 
     }
@@ -156,4 +159,73 @@ public class Main extends JFrame {
             modelListy.remove(tmp[i]);
         }
     }
+    private void stworzArchiwumZip()
+    {
+        wybieracz.setCurrentDirectory(new File(System.getProperty("user.dir"))); //skąd zaczyna szukanie
+        wybieracz.setSelectedFile(new File(System.getProperty("user.dir")+File.separator+"mojaNazwa.zip")); //podpowiada nazwe zipa
+        int tmp = wybieracz.showDialog(rootPane,"Kompresuj");
+
+        if(tmp == JFileChooser.APPROVE_OPTION)
+        {
+
+            byte tmpDate[] = new byte[BUFFOR];
+            try {
+                ZipOutputStream zOutS = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(wybieracz.getSelectedFile()), BUFFOR));
+                for (int i = 0; i < modelListy.getSize(); i++)
+                {
+                  if(!((File)modelListy.get(i)).isDirectory() )
+                      zipuj(zOutS, (File)modelListy.get(i), tmpDate, ((File)modelListy.get(i)).getPath());
+                  else {
+                      wypiszWszystkieSciezki((File)modelListy.get(i));
+
+                      for(int j=0; j<listaSciezek.size(); j++)
+                      {
+                          zipuj(zOutS, (File)listaSciezek.get(j), tmpDate, ((File)modelListy.get(i)).getPath());
+                      }
+                      listaSciezek.removeAll(listaSciezek);
+                  }
+                }
+                zOutS.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private void zipuj(ZipOutputStream zOutS, File sciezkaPliku, byte[] tmpDate, String sciezkaBazowa) throws IOException
+    {
+        BufferedInputStream inS = new BufferedInputStream(new FileInputStream(sciezkaPliku), BUFFOR);
+
+        zOutS.putNextEntry(new ZipEntry(sciezkaPliku.getPath().substring(sciezkaBazowa.lastIndexOf(File.separator)+1))); //początek
+
+
+        int counter; // liczy ile bajtow do bufora
+        while ((counter = inS.read(tmpDate, 0, BUFFOR)) != -1) // WCZYTUJEMY ZA KAŻDYM RAZEM   do buffora z pliku do kiedy to nie bedzie koniec strumienia
+        {
+            zOutS.write(tmpDate, 0, counter); // do ile jest bajtow w nastepnym buforze
+        }
+
+        zOutS.closeEntry();//koniec
+        inS.close(); // zamykamy strumienie
+    }
+    public static final int BUFFOR = 1024;
+    private  void wypiszWszystkieSciezki(File nazwaSciezki)
+    {
+        String[] nazwyPlikowIKatalogow=nazwaSciezki.list();
+        System.out.println(nazwaSciezki.getPath());
+        for(int i=0;i<nazwyPlikowIKatalogow.length;i++)
+        {
+            File p = new File(nazwaSciezki.getPath(),nazwyPlikowIKatalogow[i]);
+            if(p.isFile()) //aby znalezc tylko pliki
+              {
+                  listaSciezek.add(p);
+              }
+            if(p.isDirectory())
+            {
+
+                wypiszWszystkieSciezki(new File(p.getPath()));
+            }
+        }
+
+    }
+    ArrayList listaSciezek = new ArrayList();
 }
