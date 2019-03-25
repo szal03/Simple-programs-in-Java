@@ -19,6 +19,16 @@ public class Main extends JFrame {
                 startAnimation();
             }
         });
+
+        JButton bUsun = (JButton)panelButtonow.add(new JButton("Usun"));
+        bUsun.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopAnimation();
+            }
+        });
+
+
         this.getContentPane().add(panelAnimacji);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -26,8 +36,14 @@ public class Main extends JFrame {
     {
         panelAnimacji.dodajObrazek();
     }
+    public void stopAnimation()
+    {
+        panelAnimacji.stop();
+    }
+
     private JPanel panelButtonow = new JPanel();
     private PanelAnimacji panelAnimacji = new PanelAnimacji();
+
     public static void main(String[] args)
     {
         new Main().setVisible(true);
@@ -37,21 +53,16 @@ public class Main extends JFrame {
         public void dodajObrazek()
         {
             listaObrazkow.add(new Obrazek());
-            for(int i=0; i<5000; i++)
-            {
-                for(int j=0;j<listaObrazkow.size();j++)
-                {
-                    ((Obrazek) listaObrazkow.get(j)).ruchObrazka(this);
+             watek = new Thread(grupaWatkow, new ObrazekRunnable((Obrazek) listaObrazkow.get(listaObrazkow.size()-1)));
+            watek.start();
+
+            grupaWatkow.list();
 
 
-                    this.paint(this.getGraphics());
-                    try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-            }
+        }
+        public void stop()
+        {
+           grupaWatkow.interrupt();
         }
         @Override
         public void paintComponent(Graphics g)
@@ -63,6 +74,38 @@ public class Main extends JFrame {
             }
         }
         ArrayList listaObrazkow = new ArrayList();
+        JPanel ten = this;
+        Thread watek;
+        ThreadGroup grupaWatkow = new ThreadGroup("Grupa kotkow");
+
+        public class ObrazekRunnable implements Runnable
+        {
+            public ObrazekRunnable(Obrazek obrazek)
+            {
+                this.obrazek = obrazek;
+            }
+            @Override
+            public void run()
+            {
+                try {
+
+
+                    while (!Thread.currentThread().isInterrupted())
+                        {
+                         this.obrazek.ruchObrazka(ten);
+                         repaint();
+                            Thread.sleep(1);
+                         }
+                    }
+                    catch(InterruptedException e)
+                    {
+                     System.out.println(e.getMessage());
+                     listaObrazkow.clear();
+                     repaint();
+                    }
+            }
+            Obrazek obrazek;
+        }
     }
 
 }
